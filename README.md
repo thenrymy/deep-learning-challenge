@@ -28,9 +28,13 @@ The purpose of this analysis is to help Alphabet Soup select the applicants for 
   - The initial neural network model selected 80 neurons, 2 hidden layers, and uses `ReLU` & `sigmoid` activation functions. This is because the number of `X` features are 42. It is recommended to double or triple the number of neurons based on the number of features. The activation function `ReLU` was selected due to the features containing values starting from 0 to beyond. It is also a good starting point.
   - The model was not able to achieve the target model performance of 75%. It only reached an accuracy of 72.9%.
 
+![image](https://github.com/thenrymy/deep-learning-challenge/blob/bab7a27ec92a4a7ea1ae6e210755c1bfce111a36/Image/Initial_accuracy.png)
+
   - In order to increase model performance:
     - `ASK_AMT` feature is bucketed into two categories: 5000 & Others. When this doesn't show any improvement, `ASK_AMT` column is removed. It does not seem to affect the accuracy.
     - Number of neurons is increased to 168, 84, 42, 21, 1. The activation is varied from `ReLU`, `tanh`, and `sigmoid`. The hidden layers is increased to 4. However, all these only improved the accuracy to 73.1%
+
+![image](https://github.com/thenrymy/deep-learning-challenge/blob/bab7a27ec92a4a7ea1ae6e210755c1bfce111a36/Image/Final_accuracy.png)
 
 ### Summary
 
