@@ -1,21 +1,58 @@
 # Module 21 Challenge
 
+# Report
+
+### Overview
+
+The purpose of this analysis is to help Alphabet Soup select the applicants for funding with the best chance of success in their ventures.
+
+### Results
+
+- Data Preprocessing
+
+  - The target for this model is `IS_SUCCESSFUL`
+  - The features of the model are:
+    - `APPLICATION_TYPE`
+    - `AFFILIATION`
+    - `CLASSIFICATION`
+    - `USE_CASE`
+    - `ORGANIZATION`
+    - `STATUS`
+    - `INCOME_AMT`
+    - `SPECIAL_CONSIDERATIONS`
+    - `ASK_AMT`
+  - The variables `EIN` and `NAME` should be removed from the input data because they are neither targets nor features.
+
+- Compiling, Training, and Evaluating the Model
+
+  - The initial neural network model selected 80 neurons, 2 hidden layers, and uses `ReLU` & `sigmoid` activation functions. This is because the number of `X` features are 42. It is recommended to double or triple the number of neurons based on the number of features. The activation function `ReLU` was selected due to the features containing values starting from 0 to beyond. It is also a good starting point.
+  - The model was not able to achieve the target model performance of 75%. It only reached an accuracy of 72.9%.
+
+  - In order to increase model performance:
+    - `ASK_AMT` feature is bucketed into two categories: 5000 & Others. When this doesn't show any improvement, `ASK_AMT` column is removed. It does not seem to affect the accuracy.
+    - Number of neurons is increased to 168, 84, 42, 21, 1. The activation is varied from `ReLU`, `tanh`, and `sigmoid`. The hidden layers is increased to 4. However, all these only improved the accuracy to 73.1%
+
+### Summary
+
+In summary, the model only performed at 73% accuracy. It has a large percentage of loss at 56%. In general, to perform hyperparameter adjustment, we can try adding more neurons, layers, and epochs. We can also experiment with different activation functions. However, we can also utilise the latest automated model optimisation released in TensowFlow 2.0. This would take the guess work out for creating a nominal neural network and deep learning model.
+
 # Background
 
 The nonprofit foundation Alphabet Soup wants a tool that can help it select the applicants for funding with the best chance of success in their ventures. With your knowledge of machine learning and neural networks, you’ll use the features in the provided dataset to create a binary classifier that can predict whether applicants will be successful if funded by Alphabet Soup.
 
 From Alphabet Soup’s business team, you have received a CSV containing more than 34,000 organisations that have received funding from Alphabet Soup over the years. Within this dataset are a number of columns that capture metadata about each organisation, such as:
-* **EIN** and **NAME**—Identification columns
-* **APPLICATION_TYPE**—Alphabet Soup application type
-* **AFFILIATION**—Affiliated sector of industry
-* **CLASSIFICATION**—Government organisation classification
-* **USE_CASE**—Use case for funding
-* **ORGANIZATION**—Organisation type
-* **STATUS**—Active status
-* **INCOME_AMT**—Income classification
-* **SPECIAL_CONSIDERATIONS**—Special considerations for application
-* **ASK_AMT**—Funding amount requested
-* **IS_SUCCESSFUL**—Was the money used effectively
+
+- **EIN** and **NAME**—Identification columns
+- **APPLICATION_TYPE**—Alphabet Soup application type
+- **AFFILIATION**—Affiliated sector of industry
+- **CLASSIFICATION**—Government organisation classification
+- **USE_CASE**—Use case for funding
+- **ORGANIZATION**—Organisation type
+- **STATUS**—Active status
+- **INCOME_AMT**—Income classification
+- **SPECIAL_CONSIDERATIONS**—Special considerations for application
+- **ASK_AMT**—Funding amount requested
+- **IS_SUCCESSFUL**—Was the money used effectively
 
 # Before You Begin
 
@@ -36,9 +73,10 @@ Download the following files to help you get started:
 Using your knowledge of Pandas and scikit-learn’s `StandardScaler()`, you’ll need to preprocess the dataset. This step prepares you for Step 2, where you'll compile, train, and evaluate the neural network model.
 
 Using the information we provided in the Challenge files, follow the instructions to complete the preprocessing steps.
+
 1. Read in the `charity_data.csv` to a Pandas DataFrame, and be sure to identify the following in your dataset:
-    * What variable(s) are the target(s) for your model?
-    * What variable(s) are the feature(s) for your model?
+   - What variable(s) are the target(s) for your model?
+   - What variable(s) are the feature(s) for your model?
 2. Drop the `EIN` and `NAME` columns.
 3. Determine the number of unique values for each column.
 4. For columns that have more than 10 unique values, determine the number of data points for each unique value.
@@ -50,6 +88,7 @@ Using the information we provided in the Challenge files, follow the instruction
 # Step 2: Compile, Train, and Evaluate the Model
 
 Using your knowledge of TensorFlow, you’ll design a neural network, or deep learning model, to create a binary classification model that can predict if an Alphabet Soup-funded organisation will be successful based on the features in the dataset. You’ll need to think about how many inputs there are before determining the number of neurons and layers in your model. Once you’ve completed that step, you’ll compile, train, and evaluate your binary classification model to calculate the model’s loss and accuracy.
+
 1. Continue using the Jupyter Notebook in which you performed the preprocessing steps from Step 1.
 2. Create a neural network model by assigning the number of input features and nodes for each layer using TensorFlow and Keras.
 3. Create the first hidden layer and choose an appropriate activation function.
@@ -66,14 +105,15 @@ Using your knowledge of TensorFlow, you’ll design a neural network, or deep le
 Using your knowledge of TensorFlow, optimise your model to achieve a target predictive accuracy higher than 75%.
 
 Use any or all of the following methods to optimise your model:
-* Adjust the input data to ensure that no variables or outliers are causing confusion in the model, such as:
-    * Dropping more or fewer columns.
-    * Creating more bins for rare occurrences in columns.
-    * Increasing or decreasing the number of values for each bin.
-* Add more neurons to a hidden layer.
-* Add more hidden layers.
-* Use different activation functions for the hidden layers.
-* Add or reduce the number of epochs to the training regimen.
+
+- Adjust the input data to ensure that no variables or outliers are causing confusion in the model, such as:
+  - Dropping more or fewer columns.
+  - Creating more bins for rare occurrences in columns.
+  - Increasing or decreasing the number of values for each bin.
+- Add more neurons to a hidden layer.
+- Add more hidden layers.
+- Use different activation functions for the hidden layers.
+- Add or reduce the number of epochs to the training regimen.
 
 **Note**: If you make at least three attempts at optimising your model, you will not lose points if your model does not achieve target performance.
 
@@ -88,65 +128,66 @@ Use any or all of the following methods to optimise your model:
 For this part of the assignment, you’ll write a report on the performance of the deep learning model you created for Alphabet Soup.
 
 The report should contain the following:
+
 1. **Overview** of the analysis: Explain the purpose of this analysis.
 2. **Results**: Using bulleted lists and images to support your answers, address the following questions:
-    * Data Preprocessing
-        * What variable(s) are the target(s) for your model?
-        * What variable(s) are the features for your model?
-        * What variable(s) should be removed from the input data because they are neither targets nor features?
-    * Compiling, Training, and Evaluating the Model
-        * How many neurons, layers, and activation functions did you select for your neural network model, and why?
-        * Were you able to achieve the target model performance?
-        * What steps did you take in your attempts to increase model performance?
+   - Data Preprocessing
+     - What variable(s) are the target(s) for your model?
+     - What variable(s) are the features for your model?
+     - What variable(s) should be removed from the input data because they are neither targets nor features?
+   - Compiling, Training, and Evaluating the Model
+     - How many neurons, layers, and activation functions did you select for your neural network model, and why?
+     - Were you able to achieve the target model performance?
+     - What steps did you take in your attempts to increase model performance?
 3. **Summary**: Summarise the overall results of the deep learning model. Include a recommendation for how a different model could solve this classification problem, and then explain your recommendation.
 
 # Requirements
 
 # Preprocess the Data (30 points)
 
-* Create a dataframe containing the `charity_data.csv` data , and identify the target and feature variables in the dataset (2 points)
-* Drop the `EIN` and `NAME` columns (2 points)
-* Determine the number of unique values in each column (2 points)
-* For columns with more than 10 unique values, determine the number of data points for each unique value (4 points)
-* Create a new value called `Other` that contains rare categorical variables (5 points)
-* Create a feature array, `X`, and a target array, `y` by using the preprocessed data (5 points)
-* Split the preprocessed data into training and testing datasets (5 points)
-* Scale the data by using a `StandardScaler` that has been fitted to the training data (5 points)
+- Create a dataframe containing the `charity_data.csv` data , and identify the target and feature variables in the dataset (2 points)
+- Drop the `EIN` and `NAME` columns (2 points)
+- Determine the number of unique values in each column (2 points)
+- For columns with more than 10 unique values, determine the number of data points for each unique value (4 points)
+- Create a new value called `Other` that contains rare categorical variables (5 points)
+- Create a feature array, `X`, and a target array, `y` by using the preprocessed data (5 points)
+- Split the preprocessed data into training and testing datasets (5 points)
+- Scale the data by using a `StandardScaler` that has been fitted to the training data (5 points)
 
 # Compile, Train and Evaluate the Model (20 points)
 
-* Create a neural network model with a defined number of input features and nodes for each layer (4 points)
-* Create hidden layers and an output layer with appropriate activation functions (4 points)
-* Check the structure of the model (2 points)
-* Compile and train the model (4 points)
-* Evaluate the model using the test data to determine the loss and accuracy (4 points)
-* Export your results to an HDF5 file named `AlphabetSoupCharity.h5` (2 points)
+- Create a neural network model with a defined number of input features and nodes for each layer (4 points)
+- Create hidden layers and an output layer with appropriate activation functions (4 points)
+- Check the structure of the model (2 points)
+- Compile and train the model (4 points)
+- Evaluate the model using the test data to determine the loss and accuracy (4 points)
+- Export your results to an HDF5 file named `AlphabetSoupCharity.h5` (2 points)
 
 # Optimise the Model (20 points)
 
-* Repeat the preprocessing steps in a new Jupyter notebook (4 points)
-* Create a new neural network model, implementing at least 3 model optimisation methods (15 points)
-* Save and export your results to an HDF5 file named `AlphabetSoupCharity_Optimisation.h5` (1 point)
+- Repeat the preprocessing steps in a new Jupyter notebook (4 points)
+- Create a new neural network model, implementing at least 3 model optimisation methods (15 points)
+- Save and export your results to an HDF5 file named `AlphabetSoupCharity_Optimisation.h5` (1 point)
 
 # Write a Report on the Neural Network Model (30 points)
 
-* Write an analysis that includes a title and multiple sections, labeled with headers and subheaders (4 points)
-* Format images in the report so that they display correction (2)
-* Explain the purpose of the analysis (4)
-* Answer all 6 questions in the results section (10)
-* Summarise the overall results of your model (4)
-* Describe how you could use a different model to solve the same problem, and explain why you would use that model (6)
+- Write an analysis that includes a title and multiple sections, labeled with headers and subheaders (4 points)
+- Format images in the report so that they display correction (2)
+- Explain the purpose of the analysis (4)
+- Answer all 6 questions in the results section (10)
+- Summarise the overall results of your model (4)
+- Describe how you could use a different model to solve the same problem, and explain why you would use that model (6)
 
 # Grading
 
 This assignment will be evaluated against the requirements and assigned a grade according to the following table:
-|Grade|	Points|
+|Grade| Points|
 |-----|-------|
-|A (+/-)|	90+|
-|B (+/-)|	80–89|
-|C (+/-)|	70–79|
-|D (+/-)|	60–69|
-|F (+/-)|	< 60|
+|A (+/-)| 90+|
+|B (+/-)| 80–89|
+|C (+/-)| 70–79|
+|D (+/-)| 60–69|
+|F (+/-)| < 60|
 
 # Submission
 
@@ -161,6 +202,7 @@ Comments are disabled for graded submissions in Bootcamp Spot. If you have quest
 **It is your responsibility to include a note in the README section of your repo specifying code source and its location within your repo.** This applies if you have worked with a peer on an assignment, used code in which you did not author or create sourced from a forum such as Stack Overflow, or you received code outside curriculum content from support staff such as an Instructor, TA, Tutor, or Learning Assistant. This will provide visibility to grading staff of your circumstance in order to avoid flagging your work as plagiarized.
 
 If you are struggling with a challenge assignment or any aspect of the academic curriculum, please remember that there are student support services available for you:
+
 1. Ask the class Slack channel/peer support.
 2. AskBCS Learning Assistants exists in your class Slack application.
 3. Office hours facilitated by your instructional staff before and after each class session.
