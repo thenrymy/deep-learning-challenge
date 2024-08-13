@@ -33,7 +33,7 @@ The purpose of this analysis is to help Alphabet Soup select the applicants for 
   - In order to increase model performance:
     - `ASK_AMT` feature is bucketed into two categories: 5000 & Others. When this doesn't show any improvement, `ASK_AMT` column is removed. It does not seem to affect the accuracy.
     - Number of neurons is increased to 168, 84, 42, 21, 1. The activation is varied from `ReLU`, `tanh`, and `sigmoid`. The hidden layers is increased to 4. However, all these only improved the accuracy to 73.1%
-    - Finally, bringing back the `NAME` feature seems to have the greatest improvement for the Accuracy to 80%. However, the loss percentage is still very high. After multiple experiments, using `huber` seems to reduce the data loss to 7% only.
+    - Finally, bringing back the `NAME` feature seems to have the greatest improvement for the Accuracy to 80%. However, the loss percentage is still very high. After multiple experiments, using `huber` seems to reduce the data loss to 7% only. When dataset contains outliers and we want our model to be robust to them without completely ignoring them, Huber loss is a good choice.
 
 ![image](https://github.com/thenrymy/deep-learning-challenge/blob/932ce21ca5cb2ba080b23bcfe70b1ab304b35eb9/Image/Final_accuracy.png)
 
